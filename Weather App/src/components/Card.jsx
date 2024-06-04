@@ -25,12 +25,12 @@ function Card() {
   useEffect(() => {
 
     if (weatherInfo) {
-      dispatch(addWeatherData({weatherInfo}))
+      dispatch(addWeatherData({ weatherData: weatherInfo }))
       setdata(weatherInfo)
       setLoading(false)
     }
 
-  }, [weatherInfo])
+  }, [weatherInfo, dispatch])
 
 
   const handleSubmit = (e) => {
@@ -39,7 +39,7 @@ function Card() {
     if (newCity && newCity !== city) {
       setCity(newCity)
       setLoading(true)
-      setdata(null)
+      // setdata(null)
     }
   }
 
