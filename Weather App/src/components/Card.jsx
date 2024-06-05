@@ -10,24 +10,30 @@ import { addWeatherData } from '../store/weatherSlice';
 
 
 function Card() {
-  console.log("rerender");
+
   const [data, setdata] = useState(null)
   const [loading, setLoading] = useState(true)
   const [city, setCity] = useState('kathmandu')
+  const [error, setError] = useState(false)
   const dispatch = useDispatch()
 
   const inputRef = useRef(null)
 
   const weatherInfo = useWeatherInfo(city)
 
-  console.log(weatherInfo);
 
   useEffect(() => {
 
-    if (weatherInfo) {
+    if (weatherInfo?.cod == 200) {
+      console.log(weatherInfo);
       dispatch(addWeatherData({ weatherData: weatherInfo }))
       setdata(weatherInfo)
       setLoading(false)
+      setError(false)
+    } else {
+      setdata(null)
+      setLoading(false)
+      setError(true)
     }
 
   }, [weatherInfo, dispatch])
@@ -45,7 +51,7 @@ function Card() {
 
 
   return (
-    <div className='w-[450px] bg-none border-0 bg-white/10 flex flex-col py-7 px-20 items-center rounded-2xl shadow-md  '>
+    <div className='w-[500px] bg-none border-0 bg-white/10 flex flex-col py-7 px-10 items-center rounded-2xl shadow-md  '>
 
       <form onSubmit={handleSubmit} className=' flex '>
 
@@ -57,7 +63,15 @@ function Card() {
 
       </form>
 
-
+      {error && !loading && (
+        <div className=' flex justify-center h-[400px] flex-col items-center gap-2 ' >
+          <h2 className=' text-5xl font-bold' >City not found</h2>
+          <h2 className=' text-5xl font-bold' >404</h2>
+          <img
+          className=' bottom-0 w-[200px]'
+          src={icon.Invalid} alt="404" />
+        </div>
+      )}
 
       {loading && (
         <div className=' flex justify-center h-[400px] flex-col items-center gap-2 ' >
@@ -65,7 +79,7 @@ function Card() {
         </div>
       )}
 
-      {data && (
+      {data && !loading && !error && (
         <div className=' flex justify-center flex-col items-center gap-2 ' >
           <h2 className=' text-black font-bold text-[2rem]' >{data.name}</h2>
           <h2 className=' text-black font-bold text-[2.5rem]' >{Math.round(data.main.temp)}°C</h2>
@@ -78,7 +92,7 @@ function Card() {
           <strong className=' text-[1.4rem]' >Date: {new Date(data.dt * 1000).toDateString()}</strong>
           <strong className=' text-[1.4rem]' >Description: {data.weather[0].description}</strong>
 
-          <img className=" w-[100px] " src={icon.clear} alt="image1" />
+          <img className=" w-[100px] " src={icon[data.weather[0].main]} alt="404" />
 
         </div>
       )}

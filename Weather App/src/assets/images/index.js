@@ -1,25 +1,24 @@
-import clear from "./clear.png" 
-import clouds from "./clouds.png" 
-import drizzle from "./drizzle.png" 
-import haze from "./haze.png" 
-import mist from "./mist.png" 
-import rain from "./rain.png" 
-import snow from "./snow.png" 
-import wind from "./wind.png"
-import thunderstorm from "./thunderstorm.png" 
-import invalid from "./invalid.png"
 
+import Clear from "./clear.png";
+import Clouds from "./clouds.png";
+import Drizzle from "./drizzle.png";
+import Haze from "./haze.png";
+import Mist from "./mist.png";
+import Rain from "./rain.png";
+import Snow from "./snow.png";
+import Wind from "./wind.png";
+import Thunderstorm from "./thunderstorm.png";
+import Invalid from "./invalid.png";
 
 export const icon = {
-    clear,
-    clouds,
-    drizzle,
-    haze,
-    mist,
-    rain,
-    snow,
-    thunderstorm,
-    wind,
-    invalid
-
-}
+  Clear,
+  Clouds,
+  Drizzle,
+  Haze,
+  Mist,
+  Rain,
+  Snow,
+  Thunderstorm,
+  Wind,
+  Invalid,
+};

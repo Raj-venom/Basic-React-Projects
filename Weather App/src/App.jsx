@@ -12,15 +12,14 @@ function App() {
   if (data) {
     const condition = data.weather[0].main
 
-    console.log(`value: ${background[condition]}`);
     return (
       <div
         style={{
-           background: `url(${background[condition]}`,
-           backgroundSize: 'cover',
-           transition: 'background-image 0.3s ease-in-out'
-          
-          }}
+          background: `url(${background[condition]}`,
+          transition: 'background-image 0.2s ease-in-out',
+          backgroundSize: 'cover',
+
+        }}
 
         className=" bg-cov flex justify-center items-center h-screen w-full ">
 
@@ -34,11 +33,11 @@ function App() {
     return (
       <>
         <div
-          // style={{ background: `url(${background.clear})` }}
-          className="flex justify-center items-center h-screen w-full ">
+      
+          className=" flex justify-center items-center h-screen w-full " >
 
           <Card />
-        </div>
+        </div >
       </>
     )
   }

@@ -14,7 +14,8 @@ function useWeatherInfo(city) {
                     setData(res.data)
 
                 } catch (error) {
-                    console.log(error.message);
+                    console.log(error.response);
+                    setData(error.response.data)
                 }
             }
         )()
